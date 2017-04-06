@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+     
+
+    <title>Word Riff</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron-narrow.css" rel="stylesheet">
+    <link href="master.css" rel="stylesheet">
+    <link href="chance.css" rel="stylesheet">
+
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+   
+      
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">Word Riff</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+
+<div class="container">
+      <div class="header clearfix">
+        
+        
+      </div>
+
+      <div class="jumbotron">
+        <h1>Free form text to album recommendation</h1>
+        <!-- <h1></h1>
+        <h1></h1> -->
+
+        <p class="lead"></p>
+        
+      </div>
+
+    <script>
+     function getnextframe(){
+      input1 = document.getElementById("text_field").value;
+
+       $.ajax({
+         type: "POST",
+         contentType: "application/json; charset=utf-8",
+         url: "/t2a",
+         dataType: "json",
+         async: true,
+         data: "{\"grid\": [\""+input1+ "\"]}",
+         success: function (d) {
+            console.log(d.grid);
+          
+          document.getElementById("Art1").src = d.grid[1][0]
+          document.getElementById("rec1").innerText = "1. "+d.grid[0][0];
+          document.getElementById("Art2").src = d.grid[1][1]
+          document.getElementById("rec2").innerText = "2. "+d.grid[0][1];
+          document.getElementById("Art3").src = d.grid[1][2]
+          document.getElementById("rec3").innerText = "3. "+d.grid[0][2];
+          document.getElementById("Art4").src = d.grid[1][3]
+          document.getElementById("rec4").innerText = "4. "+d.grid[0][3];
+          document.getElementById("Art5").src = d.grid[1][4]
+          document.getElementById("rec5").innerText = "5. "+d.grid[0][4];
+         // success: function (d) {
+         //  document.getElementById("Result").innerText = d.grid[0];
+         //  console.log(d.grid[0]);
+         }  
+       })
+     }
+    </script>
+
+
+
+
+
+<div class="row">
+  <div class="col-md-6">
+    <form class="form-style-9" onsubmit="return false" >
+      <ul>
+        <li>
+          <textarea name="field5" class="field-style"  id="text_field" placeholder="Describe the music you want here...
+      
+          E.g. 'I want something upbeat with positive lyrics. I hate rap music.'" ></textarea>
+        </li>
+      
+        <li>
+          <input type="submit" value="Get Recommendation" onclick="getnextframe()" id="text_submit"/>
+        </li>
+      </ul>
+    </form>
+    
+    <h3> Check these out </h3>
+    
+    
+  </div>
+  <div class="col-md-6">
+    The text from Amazon.com reviews of music albums from 2004-2014 is used to represent each album. Your description of what you want to hear is matched with the albums that others have described most similarly. Disclaimer: the results are hit and miss for this tool; more work is needed to deal with the messiness of language.
+
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-4" >
+
+        <img alt="" src='http://ecx.images-amazon.com/images/I/51SUWsbmnHL._SX300_.jpg'
+          id="Art1"  />
+    <h3  id = "rec1"> Recommendation 1 </h3>
+  </div>
+
+  <div class="col-md-4">
+
+   
+        <img alt="" src='http://ecx.images-amazon.com/images/I/51SUWsbmnHL._SX300_.jpg'
+             id="Art2"  />    
+<h3 id = "rec2"> Recommendation 2 </h3>
+  </div>
+
+  <div class="col-md-4">
+  
+        <img alt="" src='http://ecx.images-amazon.com/images/I/51SUWsbmnHL._SX300_.jpg'
+             id="Art3"  />
+<h3 id = "rec3" > Recommendation 3 </h3>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-2">
+    
+        <img alt="" src='http://ecx.images-amazon.com/images/I/51SUWsbmnHL._SX300_.jpg' 
+             id="Art4"  /> 
+             <h3 id = "rec4" > Recommendation 4 </h3>
+  </div>
+  <div class="col-md-4">
+    
+        <img alt="" src='http://ecx.images-amazon.com/images/I/51SUWsbmnHL._SX300_.jpg'
+             id="Art5" /> 
+         <h3 id = "rec5" > Recommendation 5 </h3>
+
+  </div>
+</div>
+
+        
+
+
+   
+
+
+   
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://getbootstrap.com/assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="http://getbootstrap.com/assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

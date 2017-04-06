@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Album Recommender</title> 
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <!-- <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet"> -->
+<!--     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+ -->    
+
+    <link href="jumbotron-narrow.css" rel="stylesheet">
+    <!-- <link href="master.css" rel="stylesheet"> -->
+
+    <script src="albums.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css">
+
+<!--     <link href="jimmy.css" type="text/css" rel="stylesheet">
+ -->    <script>
+         $(function() {
+            $( "#slider-1" ).slider(
+              {value: 60,
+               min: 0,
+               max: 100,
+               start: function (event, ui) {
+                    event.stopPropagation();
+                },
+
+                slide: function( event, ui ) {
+                  $(  "#pricefrom" )
+                     .val(ui.value);
+                   },
+
+                change: function( event, ui ) {
+                  $( "#pricefrom" ).submit();
+
+                //
+                // val(ui.value) previously   
+               // change: function( event, ui ) {
+               //    $(  "#changevalue" )
+               //       .val(ui.value);
+               //    $( "#pricefrom" ).val(ui.value);
+               },
+              });
+            return false;
+         });
+    </script>
+
+
+
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+   
+      
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="\">Word Riff</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="\">Home</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="contact">Contact</a></li>
+                
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+
+<div class="container">
+      <div class="header clearfix">
+        
+        
+      </div>
+
+      <div class="jumbotron">
+        <h1 align="center">I'm currently on the job market. </h1>
+        <h2 align="center">Contact me!</h2>
+        <!-- <h2>  </h2> -->
+        <!-- <h1> </h1> -->
+        <p class="lead"></p>
+        
+      </div>
+
+  <div class="page-header">
+  
+
+        <p class="lead" align="center">michaelaaroncantrell@gmail.com
+        </p>
+        <p class="lead" align="center"> <a href="www.linkedin.com/in/cantrellmike/"> www.linkedin.com/in/cantrellmike/ </a>
+        </p>
+        <p class="lead" align="center"><a href="https://github.com/michaelaaroncantrell"> https://github.com/michaelaaroncantrell </a>
+        </p>
+        
+        
+         
+  </div>
+    
+   
+
+         
+
+
+
+  </body>
+</html>

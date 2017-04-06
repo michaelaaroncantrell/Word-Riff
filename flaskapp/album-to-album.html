@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Album Recommender</title> 
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <!-- <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet"> -->
+<!--     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+ -->    
+
+    <link href="jumbotron-narrow.css" rel="stylesheet">
+    <link href="master.css" rel="stylesheet">
+
+    <script src="albums.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css">
+
+    <link href="jimmy.css" type="text/css" rel="stylesheet">
+    <script>
+         $(function() {
+            $( "#slider-1" ).slider(
+              {value: 60,
+               min: 0,
+               max: 100,
+               start: function (event, ui) {
+                    event.stopPropagation();
+                },
+
+                slide: function( event, ui ) {
+                  $(  "#pricefrom" )
+                     .val(ui.value);
+                   },
+
+                change: function( event, ui ) {
+                  $( "#pricefrom" ).submit();
+
+                //
+                // val(ui.value) previously   
+               // change: function( event, ui ) {
+               //    $(  "#changevalue" )
+               //       .val(ui.value);
+               //    $( "#pricefrom" ).val(ui.value);
+               },
+              });
+            return false;
+         });
+    </script>
+
+
+
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+   
+      
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="\">Word Riff</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="\">Home</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="contact">Contact</a></li>
+                
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+
+<div class="container">
+      <div class="header clearfix">
+        
+        
+      </div>
+
+      <div class="jumbotron">
+        <h1>Interactive Recommender</h1>
+        <!-- <h1> </h1> -->
+        <p class="lead">Choose something safe, or go wild. It's up to you.</p>
+        
+      </div>
+
+  <div class="page-header">
+        <h1>How it works</h1>
+        <p class="lead"> The nuance of the language in user reviews (Amazon.com) is leveraged to rank the similarity of albums based on how they make people <i>feel</i>. Traditional collaborative ranking techniques are used to rein in the linguistic, impressionistic recommendations, if you so choose. 
+        Search for an album by typing in to the search bar, and then choose a degree of experimentality.
+        </p>
+  </div>
+    <script>
+
+     function getnextframe(){
+      input1 = document.getElementById("tags1").value;
+      input2 = document.getElementById("pricefrom").value;
+
+       $.ajax({
+         type: "POST",
+         contentType: "application/json; charset=utf-8",
+         url: "/a2a",
+         dataType: "json",
+         async: true,
+         data: "{\"grid\": [\""+input1+ "\", \""+input2+ "\"]}",
+         success: function (d) {
+            console.log(d.grid);
+          
+          document.getElementById("Art1").src = d.grid[1][0]
+          document.getElementById("rec1").innerText = "1. "+d.grid[0][0];
+          document.getElementById("Art2").src = d.grid[1][1]
+          document.getElementById("rec2").innerText = "2. "+d.grid[0][1];
+          document.getElementById("Art3").src = d.grid[1][2]
+          document.getElementById("rec3").innerText = "3. "+d.grid[0][2];
+          document.getElementById("Art4").src = d.grid[1][3]
+          document.getElementById("rec4").innerText = "4. "+d.grid[0][3];
+          document.getElementById("Art5").src = d.grid[1][4]
+          document.getElementById("rec5").innerText = "5. "+d.grid[0][4];
+         }
+       })
+     }
+
+   function myf() {
+
+      console.log(document.getElementById("slider-1").value);
+    }
+
+    </script>
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="ui-widget" {display:inline-block}>
+      <h1 for="tags1">What's your favorite album?</h1>
+      <select id="tags1" class="liked-album-input" onchange="getnextframe()" placeholder='select an album' style="width: 100%"></select>
+    </div>
+    <script type="text/javascript">
+    $( document ).ready(function() {
+      data = $.map(albums, function(item){
+        return {id: item, text: item};
+      });
+      
+      $(".liked-album-input").select2({
+        data: data
+      });
+
+
+    });
+    </script>
+  </div>
+
+  <div class="col-md-6">
+    <h1> How experimental do you feel? </h1>
+      <div class="row">
+      <div class="col-md-4" >
+        <h5>Not Experimental</h5>
+      </div>  
+      <div class="col-md-4 col-md-offset-2" >
+        <h5 align="right">Extremely Experimental</h5>
+      </div>
+      </div>  
+    <!-- Slider -->  
+    <div id = "slider-1" onclick="getnextframe()">
+    <input type="hidden" id="pricefrom" name="pricefrom" value="20" />
+    </div>
+    <!-- Slider -->
+  </div>
+</div>
+
+
+<h2> Check these albums out </h2>
+
+
+<div class="row">
+
+  <div class="col-md-4" >
+
+        <img alt="" src='http://ecx.images-amazon.com/images/I/51SUWsbmnHL._SX300_.jpg'
+          id="Art1"  />
+    <h3  id = "rec1"> Recommendation 1 </h3>
+  </div>
+
+  <div class="col-md-4">
+
+   
+        <img alt="" src='http://ecx.images-amazon.com/images/I/51SUWsbmnHL._SX300_.jpg'
+             id="Art2"  />    
+<h3 id = "rec2"> Recommendation 2 </h3>
+  </div>
+
+  <div class="col-md-4">
+  
+        <img alt="" src='http://ecx.images-amazon.com/images/I/51SUWsbmnHL._SX300_.jpg'
+             id="Art3"  />
+<h3 id = "rec3" > Recommendation 3 </h3>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-2">
+    
+        <img alt="" src='http://ecx.images-amazon.com/images/I/51SUWsbmnHL._SX300_.jpg' 
+             id="Art4"  /> 
+             <h3 id = "rec4" > Recommendation 4 </h3>
+  </div>
+  <div class="col-md-4">
+    
+        <img alt="" src='http://ecx.images-amazon.com/images/I/51SUWsbmnHL._SX300_.jpg'
+             id="Art5" /> 
+         <h3 id = "rec5" > Recommendation 5 </h3>
+
+  </div>
+</div>
+
+       
+        
+
+      
+   
+
+         
+
+
+
+  </body>
+</html>
