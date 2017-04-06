@@ -5,9 +5,11 @@ This repository contains the presentation, jupyter notebook and flask app for my
 ![Album to Album](https://github.com/michaelaaroncantrell/Word-Riff/blob/master/readme-images/album-to-album.png)
 
 The second is a free form text recommender that allows the user to describe what she wants to hear in her own words.
+
 ![Text to Album](https://github.com/michaelaaroncantrell/Word-Riff/blob/master/readme-images/text-to-album.png)
 
 The last finds the musical love child of two given albums.
+
 ![Mashup](https://github.com/michaelaaroncantrell/Word-Riff/blob/master/readme-images/mashup.png)
 
 These products were built using about 170,000 amazon.com user reviews of about 4,000 CDs & Vinyl from 2004-2014, leveraging both the star rating and more importantly the textual reviews. I obtained the data courtesy of J. McAuley, C. Targett, J. Shi, A. van den Hengel. 
