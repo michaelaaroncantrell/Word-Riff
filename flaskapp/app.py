@@ -143,12 +143,11 @@ def make_topics_sentiments(review_list, model, count_vectorizer):
 
         ###subset on actual topics
         u = u[:1]+u[2:18]+u[19:20]+u[21:27]
-
+        
     return u
 
 
 def text_to_album(text):
-    
     desired_album = make_topics_sentiments([text], model, vect)
     df_desired = pd.DataFrame(desired_album).transpose()
     df_desired = pd.DataFrame(normalize(df_desired, axis=1), columns = df_desired.columns, \
